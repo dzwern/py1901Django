@@ -1,6 +1,13 @@
-from django.urls import path
+from django.conf.urls import url
+
 from . import views
 
-ulrpatterns=[
-    path(" ",views)
+urlpatterns=[
+
+    url(r"^index/$",views.index),
+
+    url(r"^detail/(\d+)/$",views.detail),
+
+    url(r"^list/$",views.list)
+
 ]

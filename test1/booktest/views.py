@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 from .models import BookInfo,HeroInfo
 
@@ -31,3 +31,38 @@ def detail(request,id):
     book=BookInfo.objects.get(pk=id)
     # return HttpResponse("详情页")
     return render(request,"booktest/detail.html",{"book":book})
+
+
+def delete(request,id):
+
+    BookInfo.objects.get(pk=id).delete()
+    # return HttpResponse("删除成功")
+    booklist=BookInfo.objects.all()
+
+    return render(request,"booktest/list.html",{"booklist":booklist})
+
+
+def addhero(request,bookid):
+
+    # return HttpResponse("添加成功")
+    # book=BookInfo.objects.get(pk=id)
+    # return HttpResponse("详情页")
+    return render(request,"booktest/addhero.html",{"bookid":bookid})
+
+
+def addherohandler(request):
+
+    bookid=request.POST["bookid"]
+    hname=request.POST["heroname"]
+    hgender=request.POST["sex"]
+    hcontent=request.POST["herocontent"]
+    return HttpResponse("添加成功")
+
+    # book=BookInfo.objects.get(pk=bookid)
+    # hero=HeroInfo()
+    # hero.hname=hname
+    # hero.hgender=True
+    # hero.hcontent=hcontent
+    # hero.hbook=book
+    # hero.save()
+    # return HttpResponseRedirect('/booktest/detail/'+str(bookid)+'/',{"book":book})

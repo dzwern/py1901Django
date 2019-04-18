@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
+    {% load static from staticfiles %}
+    {#<link rel="stylesheet" href="/static/css/main.css">#}
+    <link rel="stylesheet" href="{%static '/css/main.css' %}">
 </head>
 <body>
-    <ul>
+
+    <div class="static">
+        <ul>
         {% if username %}
             <h3>{{username}}</h3>
         {% else %}
             <h3>没有登录</h3>
         {% endif %}
-    </ul>
+        </ul>
 
-    <a href="/booktest/list/">进入图书列表</a>
+    <!--{#<a href="/booktest/list/">进入图书列表</a>#}-->
+        <a href="{% url 'booktest:list' %}">进入图书列表</a>
+
+        <img src="{% static '/img/aa.jpg' %}" alt="" width="1000px">
+    </div>
 </body>
 </html>

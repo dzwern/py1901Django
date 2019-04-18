@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>详情页</title>
+    {%load static from staticfiles %}
+
+    {#<link rel="stylesheet" href="/static/css/main.css">#}
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
 </head>
 <body>
-
+<div class="static">
     <h2>书名:{{book.btitle}}</h2>
 
     <ul>
@@ -16,6 +20,12 @@
         {% endfor %}
     </ul>
 
-    <a href="/booktest/list/">返回书籍列表</a>
+    <a href="{% url 'booktest:addhero' book.id %}">添加角色</a>
+
+    <br>
+    {#<a href="/booktest/list/">返回书籍列表</a>#}
+    {#去除硬编码#}
+    <a href="{% url 'booktest:list' %}">返回书籍列表</a>
+</div>
 </body>
 </html>

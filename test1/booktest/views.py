@@ -56,13 +56,18 @@ def addherohandler(request):
     hname=request.POST["heroname"]
     hgender=request.POST["sex"]
     hcontent=request.POST["herocontent"]
-    return HttpResponse("添加成功")
+    # return HttpResponse("添加成功")
 
-    # book=BookInfo.objects.get(pk=bookid)
-    # hero=HeroInfo()
-    # hero.hname=hname
-    # hero.hgender=True
-    # hero.hcontent=hcontent
-    # hero.hbook=book
-    # hero.save()
-    # return HttpResponseRedirect('/booktest/detail/'+str(bookid)+'/',{"book":book})
+    book=BookInfo.objects.get(pk=bookid)
+
+    hero=HeroInfo()
+    hero.hname=hname
+    hero.hgender=True
+    hero.hcontent=hcontent
+    hero.hbookid=book
+
+
+    print(book,hero,'9999')
+    hero.save()
+    # return HttpResponse("添加成功")
+    return HttpResponseRedirect('/booktest/detail/'+str(bookid)+'/',{"book":book})
